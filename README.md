@@ -1,4 +1,4 @@
-https://alexwebart.github.io/ra-redux-observable
+https://alexwebart.github.io/ra-online-store
 
 # Дипломный проект курса «React»
 
