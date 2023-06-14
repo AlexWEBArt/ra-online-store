@@ -33,10 +33,10 @@ export default function Order() {
         if (!checkbox) {
             console.error('требуеться капля крови')
         }
+        setCheckBox(false)
     }
 
     const handleChangeOrderInput = (e) => {
-        console.log(e)
         const {value, name} = e.target;
         setOwner(prevData => ({...prevData, [name]: value}))
     }
@@ -50,24 +50,35 @@ export default function Order() {
         }
     }
 
-    // const otherComponent = loading ? <Preloader /> : error ? <ErrorMessage message={error}/> : null
-
     return (
-        loading ? <Preloader /> : error ? <ErrorMessage message={error}/> : status ? <SuccessfulModal /> :
+        loading 
+        ? 
+        <Preloader /> 
+        : 
+        error 
+        ? 
+        <ErrorMessage body={{owner, items: products.map(item => ({
+            id: item.product.id, price: item.product.price, count: item.counter
+        })),}}/> 
+        : 
+        status 
+        ? 
+        <SuccessfulModal /> 
+        :
         <section className="order">
             <h2 className="text-center">Оформить заказ</h2>
             <div className="card" style={{maxWidth: '30rem', margin: '0 auto'}}>
                 <form className="card-body" onSubmit={handleSubmitOrder}>
                     <div className="form-group">
                         <label htmlFor="phone">Телефон</label>
-                        <input className="form-control" id="phone" name="phone" placeholder="Ваш телефон" defaultValue={owner.phone} onChange={handleChangeOrderInput}></input>
+                        <input className="form-control" id="phone" name="phone" pattern="^\+7\d{10}$" placeholder="Ваш телефон" defaultValue={owner.phone} onChange={handleChangeOrderInput}></input>
                     </div>
                     <div className="form-group">
                         <label htmlFor="address">Адрес доставки</label>
                         <input className="form-control" id="address" name="address" placeholder="Адрес доставки" defaultValue={owner.address} onChange={handleChangeOrderInput}></input>
                     </div>
                     <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="agreement" defaultChecked={false} onChange={handleChangeCheckbox}></input>
+                        <input type="checkbox" className="form-check-input" id="agreement" value={checkbox} onChange={handleChangeCheckbox}></input>
                         <label className="form-check-label" htmlFor="agreement">Согласен с правилами доставки</label>
                     </div>
                     <button type="submit" className="btn btn-outline-secondary">Оформить</button>

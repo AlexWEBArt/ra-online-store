@@ -3,7 +3,6 @@ import { removeFromCart } from "../../../../../../redux/actions/actionCreators/a
 import { Link } from "react-router-dom";
 
 export default function CartItem(props) {
-    // console.log(props)
     const { id, title, price } = props.item.product;
     const { counter, size } = props.item
     const dispatch = useDispatch()

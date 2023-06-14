@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeSearchField } from "../../../../redux/actions/actionCreators/actionCreators";
 
 export default function SearchForm() {
-    // const { }
+    const { searchItems } = useSelector(state => state.catalog);
     const dispatch = useDispatch();
-    // Обычный Каталог реквест
-    // передавать параметры через базовый запрос, пробовать мапить сразу в эпике
-    // изменить запрос в баттон аплоад
+
+    const handleSubmitSearch = (e) => {
+        e.preventDefault()
+    }
+
     const handleSearch = (e) => {
         console.log(e.target.value)
         const { value } = e.target;
@@ -14,8 +16,8 @@ export default function SearchForm() {
     };
 
     return (
-        <form className="catalog-search-form form-inline">
-            <input className="form-control" placeholder="Поиск" onChange={handleSearch}></input>
+        <form className="catalog-search-form form-inline" onSubmit={handleSubmitSearch}>
+            <input className="form-control" placeholder="Поиск" defaultValue={searchItems} onChange={handleSearch}></input>
         </form>
     )
 }

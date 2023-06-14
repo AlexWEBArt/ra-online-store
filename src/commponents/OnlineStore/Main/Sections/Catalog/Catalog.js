@@ -8,14 +8,15 @@ import Categories from "../../Categories/Categories";
 import ButtonUpload from "../../ButtonUpload/ButtonUpload";
 
 export default function Catalog(props) {
-    const { items, loading, error } = useSelector(state => state.catalog)
+    const { items, stopOffset, loading, error } = useSelector(state => state.catalog);
+    const { searchItems, choseCategory } = useSelector(state => state.catalog)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(categoriesRequest())
-        dispatch(catalogRequest())
-    }, [dispatch])
-    
+        dispatch(catalogRequest(searchItems, choseCategory))
+    }, [dispatch, searchItems, choseCategory])
+
     return (
         <section className="catalog">
             <h2 className="text-center">Каталог</h2>
@@ -36,7 +37,11 @@ export default function Catalog(props) {
                 &&
                 <Preloader />
             }
-            <ButtonUpload />
+            {
+                !stopOffset 
+                && 
+                <ButtonUpload />
+            }
         </section>
     )
 }

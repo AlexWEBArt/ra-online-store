@@ -3,8 +3,7 @@ import CartItem from "./CartItem/CartItem";
 
 export default function CartMain() {
     const { products, totalCost } = useSelector(state => state.cart);
-    // console.log(products)
-    // console.log(totalCost)
+
     return (
         <section className="cart">
             <h2 className="text-center">Корзина</h2>

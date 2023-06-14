@@ -1,23 +1,68 @@
-import { CATALOG_FAILURE, CATALOG_REQUEST, CATALOG_SUCCES, CATALOG_CATEGORY_REQUEST, CATALOG_CATEGORY_SUCCES, CATALOG_CATEGORY_FAILURE, CATALOG_UPLOAD_REQUEST, CATALOG_UPLOAD_SUCCES, CATALOG_UPLOAD_FAILURE, CATALOG_CATEGORY_UPLOAD_REQUEST, CATALOG_CATEGORY_UPLOAD_SUCCES, CATALOG_CATEGORY_UPLOAD_FAILURE, SEARCH_ITEMS_REQUEST, SEARCH_ITEMS_FAILURE, SEARCH_ITEMS_SUCCESS, CHANGE_SEARCH_FIELD } from "../actions/actionTypes/actionTypes";
+import { CATALOG_FAILURE, CATALOG_REQUEST, CATALOG_SUCCES, CHANGE_SEARCH_FIELD, CATEGORIES_FAILURE, CATEGORIES_REQUEST, CATEGORIES_SUCCES, CHOSE_CATEGORY } from "../actions/actionTypes/actionTypes";
 
 const initialStore = {
     items: [],
+    categories: [{ id: 'All', title: 'Все' }],
+    choseCategory: null,
     searchItems: '',
+    searchRequest: false,
+    stopOffset: false,
     loading: false,
     error: null,
 }
 
 export default function catalogReducer(state = initialStore, action) {
-    switch(action.type) {
+    switch (action.type) {
         case CATALOG_REQUEST:
+
+            if (!state.searchRequest && action.payload.search.length > 0 && state.items.length > 0) {
+                return {
+                    ...state,
+                    items: [],
+                    searchRequest: true,
+                    stopOffset: true,
+                    loading: true,
+                }
+            }
+            if (action.payload.search.length > 0) {
+                return {
+                    ...state,
+                    stopOffset: true,
+                    loading: true,
+                }
+            }
             return {
                 ...state,
+                searchRequest: false,
+                stopOffset: true,
                 loading: true,
             }
         case CATALOG_SUCCES:
+            let repeated = false;
+            let stopOffset = false;
+
+            if (state.items.length > 0) {
+                repeated = action.payload.items.some(item => item.id === state.items[0].id)
+            }
+
+            if (repeated) {
+                return {
+                    ...state,
+                    stopOffset,
+                    loading: false,
+                }
+            }
+
+            if (action.payload.items.length < 6) {
+                stopOffset = true
+            }
+
+            action.payload.items.forEach(item => state.items.push(item))
+
             return {
                 ...state,
-                items: action.payload.items,
+                stopOffset,
+                repeated: false,
                 loading: false,
             }
         case CATALOG_FAILURE:
@@ -26,86 +71,39 @@ export default function catalogReducer(state = initialStore, action) {
                 loading: false,
                 error: action.payload.error.message,
             }
-        case SEARCH_ITEMS_REQUEST:
-            return {
-                ...state,
-                loading: true,
-                error: null,
-            };
-        case SEARCH_ITEMS_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload.error.message,
-            };
-        case SEARCH_ITEMS_SUCCESS:
-            return {
-                ...state,
-                items: action.payload.items,
-                loading: false,
-                error: null,
-            };
         case CHANGE_SEARCH_FIELD:
-            // const {search} = action.payload;
-            // if (search === '') { return {
-            //     ...state,
-            //     items: [],
-            //     search,
-            // };}
             return {
                 ...state,
-                search: action.payload.search,
-            };
-        case CATALOG_CATEGORY_REQUEST:
+                searchItems: action.payload.search,
+            }
+        case CATEGORIES_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
-        case CATALOG_CATEGORY_SUCCES:
+        case CATEGORIES_SUCCES:
+            if (state.categories.length - 1 === action.payload.categories.length) {
+                return {
+                    ...state,
+                    loading: false,
+                }
+            }
+            action.payload.categories.forEach(item => state.categories.push(item))
             return {
                 ...state,
-                items: action.payload.items,
                 loading: false,
             }
-        case CATALOG_CATEGORY_FAILURE:
+        case CATEGORIES_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error.message,
             }
-        case CATALOG_UPLOAD_REQUEST:
+        case CHOSE_CATEGORY:
             return {
                 ...state,
-                loading: true,
-            }
-        case CATALOG_UPLOAD_SUCCES:
-            action.payload.items.forEach(item => state.items.push(item))
-            return {
-                ...state,
-                loading: false,
-            }
-        case CATALOG_UPLOAD_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload.error.message,
-            }
-        case CATALOG_CATEGORY_UPLOAD_REQUEST:
-            return {
-                ...state,
-                loading: true,
-            }
-        case CATALOG_CATEGORY_UPLOAD_SUCCES:
-            action.payload.items.forEach(item => state.items.push(item))
-            return {
-                ...state,
-                loading: false,
-            }
-        case CATALOG_CATEGORY_UPLOAD_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload.error.message,
+                items: [],
+                choseCategory: action.payload.category,
             }
         default:
             return state

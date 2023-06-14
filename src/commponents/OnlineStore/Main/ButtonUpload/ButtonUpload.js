@@ -1,19 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
-import { catalogCategoryUploadRequest, catalogUploadRequest } from "../../../../redux/actions/actionCreators/actionCreators";
+import { catalogRequest } from "../../../../redux/actions/actionCreators/actionCreators";
 
 export default function ButtonUpload() {
     const { length } = useSelector(state => state.catalog.items);
-    const { choseCategory } = useSelector(state => state.categories)
-    const { search } = useSelector(state => state.catalog)
+    const { choseCategory, searchItems } = useSelector(state => state.catalog)
     const dispatch = useDispatch();
 
     const handleClickUpload = () => {
-        // if (choseCategory) {
-            dispatch(catalogCategoryUploadRequest(search, choseCategory, length))
-
-            // return
-        // }
-        // dispatch(catalogUploadRequest(length))
+        dispatch(catalogRequest(searchItems, choseCategory, length))
     };
 
     return (

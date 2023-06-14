@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 export default function Product() {
     const { id } = useParams('id');
     const { product, counter, size, loading, error } = useSelector(state => state.product);
-    // const { title, images, sku, manufacturer, color, material, season, reason, sizes } = product.;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,11 +25,10 @@ export default function Product() {
             dispatch(productCounterDecrement())
         }
     }
-    // console.log(product)
+
     const handleClickAddCartItem = () => {
         dispatch(addToCart({product, counter, size}))
     }
-    // console.log(product)
 
     return (
         <section className="catalog-item">
@@ -44,7 +42,7 @@ export default function Product() {
                     <div className="row">
                         <div className="col-5">
                             <img src={product.images[0]}
-                                className="img-fluid" alt=""></img>
+                                className="img-fluid" alt={product.title}></img>
                         </div>
                         <div className="col-7">
                             <table className="table table-bordered">

@@ -14,6 +14,13 @@ export default function topSalesReducer(state = initialStore, action) {
                 loading: true,
             }
         case TOPSALES_SUCCES:
+            if (action.payload.items.length < 0) {
+                return {
+                    ...state,
+                    items: [],
+                    loading: false,
+                }
+            }
             return {
                 ...state,
                 items: action.payload.items,

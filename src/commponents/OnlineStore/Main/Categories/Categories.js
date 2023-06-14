@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { catalogCategoryRequest, catalogRequest, choseCategory } from "../../../../redux/actions/actionCreators/actionCreators";
+import { catalogRequest, choseCategory } from "../../../../redux/actions/actionCreators/actionCreators";
 
 export default function Categories() {
-  const { categories } = useSelector(state => state.categories)
+  const { categories, searchItems } = useSelector(state => state.catalog);
 
   const dispatch = useDispatch();
 
@@ -12,12 +12,12 @@ export default function Categories() {
 
     if (id === 'All') {
       dispatch(choseCategory(null))
-      dispatch(catalogRequest());
+      dispatch(catalogRequest(searchItems));
 
       return
     };
     dispatch(choseCategory(id))
-    dispatch(catalogCategoryRequest(id));
+    dispatch(catalogRequest(searchItems, id));
   }
 
   return (

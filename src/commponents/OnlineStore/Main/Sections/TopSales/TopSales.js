@@ -15,11 +15,24 @@ export default function TopSales() {
 
     return (
         <section className="top-sales">
-            <h2 className="text-center">Хиты продаж!</h2>
-            {error && <ErrorMessage message={error}/>}
-            <div className="row">
-                {items && items.map(item => <Item key={item.id} item={item}/>)}
-            </div>
+            {
+                error 
+                && 
+                <ErrorMessage />
+            }
+            {
+                items.length > 0 
+                && 
+                !loading
+                &&
+                <>
+                    <h2 className="text-center">Хиты продаж!</h2>
+                    
+                    <div className="row">
+                        {items && items.map(item => <Item key={item.id} item={item}/>)}
+                    </div>
+                </>
+            }
             {
                 loading
                 &&
