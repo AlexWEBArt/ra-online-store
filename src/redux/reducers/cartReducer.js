@@ -2,12 +2,12 @@ import userStorage from "../../userStorage/userStorage";
 import { ADD_TO_CART, CART_ORDER_FAILURE, CART_ORDER_REQUEST, CART_ORDER_SUCCES, CART_RESET, CLOSE_MODAL, REMOVE_FROM_CART } from "../actions/actionTypes/actionTypes";
 
 userStorage.initialStorage();
-const prevCart = userStorage.storageLoadCart();
-
+const prevStorage = userStorage.loadStorage();
+console.log(prevStorage.cart)
 const initialStore = {
-    products: prevCart.products,
-    totalCost: prevCart.totalCost,
-    productsCounter: prevCart.productsCounter,
+    products: prevStorage.cart.products,
+    totalCost: prevStorage.cart.totalCost,
+    productsCounter: prevStorage.cart.productsCounter,
     status: null,
     loading: false,
     error: null,

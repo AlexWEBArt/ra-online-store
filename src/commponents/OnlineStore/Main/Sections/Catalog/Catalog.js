@@ -13,8 +13,12 @@ export default function Catalog(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(categoriesRequest())
-        dispatch(catalogRequest(searchItems, choseCategory))
+        console.log('start')
+        dispatch(categoriesRequest());
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(catalogRequest(searchItems, choseCategory));
     }, [dispatch, searchItems, choseCategory])
 
     return (

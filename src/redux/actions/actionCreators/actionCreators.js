@@ -7,6 +7,7 @@ import { CHOSE_CATEGORY } from "../actionTypes/actionTypes";
 import { PRODUCT_COUNTER_INCREMENT, PRODUCT_COUNTER_DECREMENT } from "../actionTypes/actionTypes";
 import { PRODUCT_SIZE_SELECTED } from "../actionTypes/actionTypes";
 import { ADD_TO_CART, REMOVE_FROM_CART, CART_RESET, CLOSE_MODAL } from "../actionTypes/actionTypes";
+import { FAVORITE_SELECT } from "../actionTypes/actionTypes";
 
 export const topSalesRequest = () => ({
     type: TOPSALES_REQUEST,
@@ -97,4 +98,9 @@ export const cartOrderSucces = (status) => ({
 });
 export const cartOrderFailure = (error) => ({
     type: CART_ORDER_FAILURE, payload: {error}
+});
+
+
+export const favoriteSelect = (item) => ({
+    type: FAVORITE_SELECT, payload: {item}
 });

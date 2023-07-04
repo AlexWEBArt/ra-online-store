@@ -25,7 +25,7 @@ export default function Categories() {
         {
           categories[1] && categories.map(item => 
               <li key={item.id} className="nav-item">
-                  <NavLink className="nav-link" data-id={item.id} href="#" onClick={handleClickCategory}>
+                  <NavLink className="nav-link" data-id={item.id} to={`/ra-online-store/catalog/${item.id}`} onClick={handleClickCategory}>
                       {item.title}
                   </NavLink>
               </li>

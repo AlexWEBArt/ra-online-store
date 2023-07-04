@@ -16,6 +16,9 @@ export default function Menu() {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/ra-online-store/contacts">Контакты</NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/ra-online-store/favorites">Отложенные</NavLink>
+                </li>
               </ul>
         </div>
     )

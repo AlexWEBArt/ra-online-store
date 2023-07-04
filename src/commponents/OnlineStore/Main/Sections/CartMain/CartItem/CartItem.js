@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../../../../../redux/actions/actionCreators/actionCreators";
 import { Link } from "react-router-dom";
 
@@ -7,13 +7,13 @@ export default function CartItem(props) {
     const { counter, size } = props.item
     const dispatch = useDispatch()
 
-    const handleClickRemoveCartItem = (e) => {
+    const handleClickRemoveCartItem = () => {
         dispatch(removeFromCart({id, price, counter}))
     }
 
     return (
         <tr>
-            <td scope="row">{props.index + 1}</td>
+            <td>{props.index + 1}</td>
             <td><Link to={`/ra-online-store/product/${id}`}>{title}</Link></td>
             <td>{size}</td>
             <td>{counter}</td>

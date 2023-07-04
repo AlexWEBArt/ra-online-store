@@ -5,7 +5,6 @@ const initialStore = {
     categories: [{ id: 'All', title: 'Все' }],
     choseCategory: null,
     searchItems: '',
-    searchRequest: false,
     stopOffset: false,
     loading: false,
     error: null,
@@ -14,26 +13,13 @@ const initialStore = {
 export default function catalogReducer(state = initialStore, action) {
     switch (action.type) {
         case CATALOG_REQUEST:
-
-            if (!state.searchRequest && action.payload.search.length > 0 && state.items.length > 0) {
-                return {
-                    ...state,
-                    items: [],
-                    searchRequest: true,
-                    stopOffset: true,
-                    loading: true,
-                }
-            }
-            if (action.payload.search.length > 0) {
-                return {
-                    ...state,
-                    stopOffset: true,
-                    loading: true,
-                }
+            console.log(action.payload)
+            console.log(state.choseCategory)
+            if (state.searchItems && action.payload.search.length > 0 && state.items.length > 0 && !action.payload.offset) {
+                state.items = [];
             }
             return {
                 ...state,
-                searchRequest: false,
                 stopOffset: true,
                 loading: true,
             }
@@ -82,13 +68,9 @@ export default function catalogReducer(state = initialStore, action) {
                 loading: true,
             }
         case CATEGORIES_SUCCES:
-            if (state.categories.length - 1 === action.payload.categories.length) {
-                return {
-                    ...state,
-                    loading: false,
-                }
+            if (state.categories.length - 1 !== action.payload.categories.length) {
+                action.payload.categories.forEach(category => state.categories.push(category))
             }
-            action.payload.categories.forEach(item => state.categories.push(item))
             return {
                 ...state,
                 loading: false,

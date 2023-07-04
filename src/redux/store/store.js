@@ -9,11 +9,13 @@ import productReducer from "../reducers/productReducer";
 import { productEpic } from "../epics/productEpics";
 import cartReducer from "../reducers/cartReducer";
 import { cartOrderEpic } from "../epics/cartEpics";
+import favoritesReducer from "../reducers/favoritesReducer";
 
 const reducer = combineReducers({
     topSales: topSalesReducer,
     catalog: catalogReducer,
     product: productReducer,
+    favorites: favoritesReducer,
     cart: cartReducer,
 });
 

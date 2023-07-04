@@ -11,17 +11,22 @@ import ContactsMain from "./Main/Sections/ContactsMain/ContactsMain";
 import CartMain from "./Main/Sections/CartMain/CartMain";
 import Order from "./Main/Sections/Order/Order";
 import Product from "./Main/Sections/Product/Product";
+import ButtonUp from "../CommonSystem/ButtonUp/ButtonUp";
+import Favorites from "./Main/Sections/Favorites/Favorites";
 
 export default function OnlineStore() {
     return (
         <div className="online-store">
             <Header />
+            <ButtonUp />
             <Main>
                 <Routes>
                     <Route path='/ra-online-store' element={<><TopSales /><Catalog /></>}></Route>
                     <Route path='/ra-online-store/catalog' element={<Catalog ><SearchForm /></Catalog>}></Route>
+                    <Route path='/ra-online-store/catalog/:category' element={<Catalog ><SearchForm /></Catalog>}></Route>
                     <Route path='/ra-online-store/about' element={<About/>}></Route>
                     <Route path='/ra-online-store/contacts' element={<ContactsMain />}></Route>
+                    <Route path='/ra-online-store/favorites' element={<Favorites />}></Route>
                     <Route path='/ra-online-store/cart' element={<><CartMain /><Order /></>}></Route>
                     <Route path='/ra-online-store/product/:id' element={<Product />}></Route>
 

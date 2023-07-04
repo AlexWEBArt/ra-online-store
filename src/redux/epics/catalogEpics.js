@@ -8,6 +8,7 @@ export const catalogEpic = action$ => action$.pipe(
     ofType(CATALOG_REQUEST),
     map(o => o.payload),
     map(o => {
+        console.log(o)
         const params = {};
         let prefParams = '?';
 

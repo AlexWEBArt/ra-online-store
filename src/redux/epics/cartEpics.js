@@ -12,7 +12,6 @@ export const cartOrderEpic = action$ => action$.pipe(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        //   'rxjs-custom-header': 'Rxjs'
         },
         body: JSON.stringify(body),
       }).pipe(

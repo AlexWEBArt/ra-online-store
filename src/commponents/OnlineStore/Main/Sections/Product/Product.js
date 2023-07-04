@@ -6,6 +6,7 @@ import Preloader from "../../../../CommonSystem/Preloader/Preloader";
 import ErrorMessage from "../../../../CommonSystem/ErrorMessage/ErrorMessage";
 import Sizes from "./Sizes/Sizes";
 import { Link } from "react-router-dom";
+import ButtonFavorite from "./ButtonFavorite/ButtonFavorite"
 
 export default function Product() {
     const { id } = useParams('id');
@@ -17,11 +18,10 @@ export default function Product() {
     }, [dispatch, id])
 
     const handleClickCounter = (e) => {
-        const { target } = e;
-        if (target.classList.contains('increment')) {
+        if (e.target.classList.contains('increment')) {
             dispatch(productCounterIncrement())
         }
-        if (target.classList.contains('decrement')) {
+        if (e.target.classList.contains('decrement')) {
             dispatch(productCounterDecrement())
         }
     }
@@ -70,6 +70,14 @@ export default function Product() {
                                     <tr>
                                         <td>Повод</td>
                                         <td>{product.reason}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Цена</td>
+                                        <td>{product.price}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Избранное</td>
+                                        <td><ButtonFavorite item={{id: Number(id), title: product.title, count: product.price}}/></td>
                                     </tr>
                                 </tbody>
                             </table>
