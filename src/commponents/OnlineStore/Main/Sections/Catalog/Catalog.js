@@ -13,7 +13,6 @@ export default function Catalog(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('start')
         dispatch(categoriesRequest());
     }, [dispatch])
 

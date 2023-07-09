@@ -3,7 +3,7 @@ import { ADD_TO_CART, CART_ORDER_FAILURE, CART_ORDER_REQUEST, CART_ORDER_SUCCES,
 
 userStorage.initialStorage();
 const prevStorage = userStorage.loadStorage();
-console.log(prevStorage.cart)
+
 const initialStore = {
     products: prevStorage.cart.products,
     totalCost: prevStorage.cart.totalCost,

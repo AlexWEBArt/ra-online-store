@@ -22,7 +22,7 @@ export default function OnlineStore() {
             <Main>
                 <Routes>
                     <Route path='/ra-online-store' element={<><TopSales /><Catalog /></>}></Route>
-                    <Route path='/ra-online-store/catalog' element={<Catalog ><SearchForm /></Catalog>}></Route>
+                    <Route path='/ra-online-store/catalog/1' element={<Catalog ><SearchForm /></Catalog>}></Route>
                     <Route path='/ra-online-store/catalog/:category' element={<Catalog ><SearchForm /></Catalog>}></Route>
                     <Route path='/ra-online-store/about' element={<About/>}></Route>
                     <Route path='/ra-online-store/contacts' element={<ContactsMain />}></Route>

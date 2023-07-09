@@ -26,21 +26,23 @@ https://alexwebart.github.io/ra-online-store
 
 ## Запросы к серверу
 
-1. Хиты продаж — GET http://localhost:7070/api/top-sales.
+Хостинг сервера - Render (url) - https://ra-online-store-backend.onrender.com - бесплатный хостинг, подъем из спящего режима около 30 сек.
 
-1. Категории каталога — GET http://localhost:7070/api/categories.
+1. Хиты продаж — GET {url}/api/top-sales.
 
-1. Элементы каталога — GET http://localhost:7070/api/items для варианта «Все».
+1. Категории каталога — {url}/api/categories.
 
-1. Выбор категории - GET http://localhost:7070/api/items?categoryId=X.
+1. Элементы каталога — GET {url}/api/items для варианта «Все».
 
-1. Загрузить ещё — GET http://localhost:7070/api/items?offset=6.
+1. Выбор категории - GET {url}/api/items?categoryId=X.
 
-1. Поисковый запрос — GET http://localhost:7070/api/items?q=<текст в строке поиска>.
+1. Загрузить ещё — GET {url}/api/items?offset=6.
 
-1. Полная информация о товаре — GET http://localhost:7070/api/items/:id.
+1. Поисковый запрос — GET {url}/api/items?q=<текст в строке поиска>.
 
-1. Оформление заказа — POST http://localhost:7070/api/order.
+1. Полная информация о товаре — GET {url}/api/items/:id.
+
+1. Оформление заказа — POST {url}/api/order.
 
 При запросе «Загрузить ещё» учитываеться выбранная категория и поисковый запрос.
 
@@ -72,6 +74,7 @@ https://alexwebart.github.io/ra-online-store
     - Payment
     - Copyright
     - Contacts
+
 ## Внешний вид
 
 ![Main](./src/img/readMe/index-loaded.png)

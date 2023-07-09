@@ -17,7 +17,7 @@ export default function favoritesReducer(state = initialStore, action) {
                 state.favorites.push(action.payload.item);
             }
 
-            userStorage.addFavorites(state.favorites)
+            userStorage.addFavorites(state.favorites);
             return {...state};
         default:
             return state;

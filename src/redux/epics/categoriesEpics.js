@@ -7,7 +7,10 @@ import { categoriesFailure, categoriesSucces } from "../actions/actionCreators/a
 export const categoriesEpic = action$ => action$.pipe(
     ofType(CATEGORIES_REQUEST),
     switchMap(() => ajax.getJSON('https://ra-online-store-backend.onrender.com/api/categories').pipe(
-        map(o => categoriesSucces(o)),
+        map(o => {           
+            o.unshift({ id: 1, title: 'Все' })
+            return categoriesSucces(o)
+        }),
         catchError(o => of(categoriesFailure(o))),
     ))
 )

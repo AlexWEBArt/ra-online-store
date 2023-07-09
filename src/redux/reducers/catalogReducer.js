@@ -2,7 +2,7 @@ import { CATALOG_FAILURE, CATALOG_REQUEST, CATALOG_SUCCES, CHANGE_SEARCH_FIELD, 
 
 const initialStore = {
     items: [],
-    categories: [{ id: 'All', title: 'Все' }],
+    categories: [],
     choseCategory: null,
     searchItems: '',
     stopOffset: false,
@@ -13,42 +13,25 @@ const initialStore = {
 export default function catalogReducer(state = initialStore, action) {
     switch (action.type) {
         case CATALOG_REQUEST:
-            console.log(action.payload)
-            console.log(state.choseCategory)
-            if (state.searchItems && action.payload.search.length > 0 && state.items.length > 0 && !action.payload.offset) {
+            if (!action.payload.offset) {
                 state.items = [];
             }
+            
             return {
                 ...state,
                 stopOffset: true,
                 loading: true,
             }
         case CATALOG_SUCCES:
-            let repeated = false;
-            let stopOffset = false;
-
-            if (state.items.length > 0) {
-                repeated = action.payload.items.some(item => item.id === state.items[0].id)
-            }
-
-            if (repeated) {
-                return {
-                    ...state,
-                    stopOffset,
-                    loading: false,
-                }
-            }
+            state.stopOffset = false;
+            action.payload.items.forEach(item => state.items.push(item));
 
             if (action.payload.items.length < 6) {
-                stopOffset = true
+                state.stopOffset = true;
             }
-
-            action.payload.items.forEach(item => state.items.push(item))
 
             return {
                 ...state,
-                stopOffset,
-                repeated: false,
                 loading: false,
             }
         case CATALOG_FAILURE:
@@ -58,6 +41,10 @@ export default function catalogReducer(state = initialStore, action) {
                 error: action.payload.error.message,
             }
         case CHANGE_SEARCH_FIELD:
+            if (action.payload.search === '') {
+                state.items = [];
+            }
+
             return {
                 ...state,
                 searchItems: action.payload.search,
@@ -68,11 +55,9 @@ export default function catalogReducer(state = initialStore, action) {
                 loading: true,
             }
         case CATEGORIES_SUCCES:
-            if (state.categories.length - 1 !== action.payload.categories.length) {
-                action.payload.categories.forEach(category => state.categories.push(category))
-            }
             return {
                 ...state,
+                categories: action.payload.categories,
                 loading: false,
             }
         case CATEGORIES_FAILURE:

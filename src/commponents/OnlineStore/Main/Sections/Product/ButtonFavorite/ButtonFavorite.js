@@ -4,7 +4,7 @@ import { favoriteSelect } from "../../../../../../redux/actions/actionCreators/a
 export default function ButtonFavorite(props) {
     const { favorites } = useSelector(state => state.favorites);
     const dispatch = useDispatch();
-
+    
     const handleClickProductFavorite = () => {
         dispatch(favoriteSelect(props.item))
     }

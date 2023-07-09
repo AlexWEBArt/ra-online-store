@@ -77,7 +77,7 @@ export default function Product() {
                                     </tr>
                                     <tr>
                                         <td>Избранное</td>
-                                        <td><ButtonFavorite item={{id: Number(id), title: product.title, count: product.price}}/></td>
+                                        <td><ButtonFavorite item={{id: Number(id), title: product.title, price: product.price}}/></td>
                                     </tr>
                                 </tbody>
                             </table>

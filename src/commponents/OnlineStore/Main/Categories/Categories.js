@@ -10,12 +10,12 @@ export default function Categories() {
   const handleClickCategory = (e) => {
     const id = e.target.getAttribute('data-id');
 
-    if (id === 'All') {
+    if (id === '1') {
       dispatch(choseCategory(null))
       dispatch(catalogRequest(searchItems));
 
-      return
-    };
+      return;
+    }
     dispatch(choseCategory(id))
     dispatch(catalogRequest(searchItems, id));
   }
@@ -23,7 +23,7 @@ export default function Categories() {
   return (
     <ul className="catalog-categories nav justify-content-center">
         {
-          categories[1] && categories.map(item => 
+          categories[0] && categories.map(item => 
               <li key={item.id} className="nav-item">
                   <NavLink className="nav-link" data-id={item.id} to={`/ra-online-store/catalog/${item.id}`} onClick={handleClickCategory}>
                       {item.title}

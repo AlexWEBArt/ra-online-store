@@ -4,7 +4,7 @@ import topSalesReducer from "../reducers/topSalesReducer";
 import { topSalesEpic } from "../epics/topSalesEpics";
 import catalogReducer from "../reducers/catalogReducer";
 import { categoriesEpic } from "../epics/categoriesEpics";
-import { catalogEpic, changeSearchEpic } from "../epics/catalogEpics";
+import { catalogEpic } from "../epics/catalogEpics";
 import productReducer from "../reducers/productReducer";
 import { productEpic } from "../epics/productEpics";
 import cartReducer from "../reducers/cartReducer";
@@ -25,7 +25,6 @@ const epic = combineEpics(
     topSalesEpic,
     categoriesEpic,
     catalogEpic,
-    changeSearchEpic,
     productEpic,
     cartOrderEpic,
 );

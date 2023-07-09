@@ -10,7 +10,6 @@ export default function SearchForm() {
     }
 
     const handleSearch = (e) => {
-        console.log(e.target.value)
         const { value } = e.target;
         dispatch(changeSearchField(value));
     };

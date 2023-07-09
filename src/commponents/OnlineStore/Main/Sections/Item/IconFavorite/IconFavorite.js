@@ -1,9 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { favoriteSelect } from "../../../../../../redux/actions/actionCreators/actionCreators";
+import { useState, useEffect } from "react";
 
 export default function IconFavorite(props) {
+    const [favoritesIcon, setFavoritesIcon] = useState(false);
     const { favorites } = useSelector(state => state.favorites);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const favorite = favorites.filter(favorite => favorite.id === props.item.id);
+        if (favorite[0]) {
+            setFavoritesIcon(true)
+        }
+    }, [favorites, props.item])
+
+    let classFavorite;
+    
+    if (favoritesIcon) {
+        classFavorite = 'bi-heart-fill';
+    } else {
+        classFavorite = 'bi-heart';
+    }
 
     const toggleHeartClass = (element) => {
         if (element.classList.contains('bi-heart')) {
@@ -21,15 +38,6 @@ export default function IconFavorite(props) {
         toggleHeartClass(e.target);
         
         dispatch(favoriteSelect(props.item))
-    }
-
-    let classFavorite;
-    const favorite = favorites.filter(favorite => favorite.id === props.item.id);
-    
-    if (favorite[0]) {
-        classFavorite = 'bi-heart-fill';
-    } else {
-        classFavorite = 'bi-heart';
     }
 
     return (

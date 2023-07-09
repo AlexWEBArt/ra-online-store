@@ -1,8 +1,13 @@
 import { useSelector } from "react-redux";
 import FavoriteItem from "./FavoriteItem/FavoriteItem";
+import { useEffect } from "react";
 
 export default function Favorites() {
     const { favorites } = useSelector(state => state.favorites);
+    
+    useEffect(() => {
+        console.log(favorites)
+    }, [favorites])
     
     return (
         <section className="favorites">

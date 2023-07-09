@@ -5,7 +5,7 @@ import { favoriteSelect } from "../../../../../../redux/actions/actionCreators/a
 export default function CartItem(props) {
     const { id, title, price } = props.item;
     const dispatch = useDispatch();
-
+    
     const handleClickRemoveCartItem = () => {
         dispatch(favoriteSelect({id}));
     }

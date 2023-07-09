@@ -8,7 +8,7 @@ export default function Menu() {
                   <NavLink className="nav-link" to="/ra-online-store/">Главная</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/ra-online-store/catalog">Каталог</NavLink>
+                  <NavLink className="nav-link" to="/ra-online-store/catalog/1">Каталог</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/ra-online-store/about">О магазине</NavLink>
