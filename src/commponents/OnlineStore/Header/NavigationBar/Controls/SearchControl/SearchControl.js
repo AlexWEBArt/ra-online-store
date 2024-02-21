@@ -1,35 +1,23 @@
 import { useRef, useState } from "react"
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { changeSearchField } from "../../../../../../redux/actions/actionCreators/actionCreators";
 
 export default function SearchControl() {
-    const [clickCounter, setClickCounter] = useState(0);
     const [clickLink, setClickLink] = useState(null);
     const [value, setValue] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const invisibleSearch = useRef();
 
     const defaultState = () => {
         invisibleSearch.current.classList.add('invisible');
         setValue('')
         setClickLink(null);
-        setClickCounter(0);
     }
 
     const handleClickControlSearch = () => {
-        if (clickCounter === 0) {
-            invisibleSearch.current.classList.remove('invisible');
-            setClickLink(<Link className="click-link" to={'/ra-online-store/catalog'}/>);
-            setClickCounter(1);
-        }
-        if (clickCounter === 1 && value[0]) {
-            dispatch(changeSearchField(value));
-            defaultState();
-        }
-        if (clickCounter === 1 && !value[0]) {
-            defaultState();
-        }
+        invisibleSearch.current.classList.toggle('invisible');
     }
 
     const handleControlSearch = (e) => {
@@ -41,6 +29,7 @@ export default function SearchControl() {
         e.preventDefault();
 
         dispatch(changeSearchField(value));
+        navigate('/ra-online-store/catalog/1')
         defaultState();
     }
 

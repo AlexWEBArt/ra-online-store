@@ -126,10 +126,10 @@ section {
 }
 .header-controls-search-form {
   position: absolute;
-  right: 65px;
+  right: 55px;
   top: calc(50% - 19px);
   display: block;
-  width: 233px;
+  width: 40%;
   height: 38px;
   padding: 0 20px;
   background: #FFFFFF;
@@ -379,7 +379,7 @@ section {
 
 .card-img {
   display: block;
-  max-width: 250px;
+  /* max-width: 250px; */
   width: auto;
   height: auto;
   margin: auto;
@@ -423,4 +423,80 @@ h2, .h2 {
 
 .btn-lg {
   width: 100%;
+}
+
+.dropdown-toggle {
+  position: relative;
+  display: none;
+}
+
+@media (max-width: 997px) {
+  a img {
+    width: 150px
+  }
+
+  .banner-header {
+    top: 32px;
+    height: 68px;
+    width: 387px;
+    font-size: 38px;
+    line-height: 68px;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 10px;
+  }
+
+  a img {
+    width: 100px
+  }
+
+  .banner-header {
+    top: 22px;
+    height: 48px;
+    width: 287px;
+    font-size: 28px;
+    line-height: 48px;
+  }
+
+  .col-4 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-header {
+    top: 22px;
+    height: 48px;
+    width: 287px;
+    font-size: 28px;
+    line-height: 48px;
+  }
+
+  .btn.dropdown-toggle {
+    display: block;
+    background-color: rgb(161, 179, 191);
+    border: none;
+    font-size: 12px;
+    margin: auto;
+  }
+
+  .navbar {
+    flex-wrap: nowrap;
+  }
+
+  .navbar-nav {
+    display: none;
+    padding-left: 20px;
+  }
+
+  .footer .col {
+    align-items: center;
+  }
+
+  .footer-contacts {
+    text-align: center;
+  }
 }

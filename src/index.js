@@ -7,7 +7,6 @@ import store from './redux/store/store';
 
 import OnlineStore from './commponents/OnlineStore/OnlineStore';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './css/style.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

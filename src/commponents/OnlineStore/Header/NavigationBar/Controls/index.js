@@ -1,5 +1,5 @@
 import CartControl from "./CartControl/CartControl";
-import SearchControl from "./SearcControl/SearchControl";
+import SearchControl from "./SearchControl/SearchControl";
 
 export default function Controls() {
     return (
