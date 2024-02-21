@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/ra-online-store/static/css/main.4fa943eb.css",
+    "main.css": "/ra-online-store/static/css/main.693d8ff2.css",
     "main.js": "/ra-online-store/static/js/main.6deec99f.js",
     "static/js/787.dbe50fc8.chunk.js": "/ra-online-store/static/js/787.dbe50fc8.chunk.js",
     "static/media/banner.jpg": "/ra-online-store/static/media/banner.5fd2c60d58a8686daee0.jpg",
     "static/media/footer-sprite.png": "/ra-online-store/static/media/footer-sprite.b3d5697aeb76ce9f8002.png",
     "index.html": "/ra-online-store/index.html",
-    "main.4fa943eb.css.map": "/ra-online-store/static/css/main.4fa943eb.css.map",
+    "main.693d8ff2.css.map": "/ra-online-store/static/css/main.693d8ff2.css.map",
     "main.6deec99f.js.map": "/ra-online-store/static/js/main.6deec99f.js.map",
     "787.dbe50fc8.chunk.js.map": "/ra-online-store/static/js/787.dbe50fc8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fa943eb.css",
+    "static/css/main.693d8ff2.css",
     "static/js/main.6deec99f.js"
   ]
 }
